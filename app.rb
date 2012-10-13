@@ -20,7 +20,7 @@ get '/' do
     db_client.put_file('/Public/DBIDE/Project1/index.html', 'Hello World')
   end
 
-  @js = ['/js/lib/jquery.js', '/js/lib/underscore.js', '/js/lib/backbone.js', '/js/lib/ace/ace.js']
+  @js = ['lib/jquery', 'lib/underscore', 'lib/backbone', 'lib/ace/ace', 'dbide']
   erb :index
 end
 
