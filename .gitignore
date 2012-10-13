@@ -1,5 +1,5 @@
 development.db
-views/js/*.js
+public/js/*.js
 Gemfile.lock
 config.rb
 .DS_Store
