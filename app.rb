@@ -22,6 +22,7 @@ get '/' do
     # here, make it so we upload a dummy index.html file
   end
 
+  @js = ['/js/lib/jquery.js', '/js/lib/underscore.js', '/js/lib/backbone.js', '/js/lib/ace/ace.js']
   erb :index
 end
 
