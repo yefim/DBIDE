@@ -31,8 +31,10 @@
     <title>DBIDE</title>
   </head>
   <body>
-    <%= erb :header %>
-    <%= yield %>
-    <%= erb :footer %>
+    <div class='container'>
+      <%= erb :header %>
+      <%= yield %>
+      <%= erb :footer %>
+    </div>
   </body>
 </html>
