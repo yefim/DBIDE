@@ -1,6 +1,7 @@
 require 'sinatra'
 require 'dropbox_sdk'
 require_relative 'config'
+require_relative 'models'
 
 enable :sessions
 
