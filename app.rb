@@ -6,9 +6,21 @@ require_relative 'models'
 enable :sessions
 
 get '/' do
-  session['dropbox'].get_access_token
-  client = DropboxClient.new(session['dropbox'], ACCESS_TYPE)
+  redirect 'login' if !session['dropbox']
 
+  session['dropbox'].get_access_token
+  db_client = DropboxClient.new(session['dropbox'], ACCESS_TYPE)
+  uid = db_client.account_info['uid']
+  @user = User.first(dropbox_id: uid)
+
+  if !@user
+    @user = User.create(
+      dropbox_id: uid, 
+      access_token: session['dropbox'].access_token)
+    db_client.put_file('/Public/DBIDE/Project1/index.html', 'Hello World')
+  end
+
+  @js = ['/js/lib/jquery.js', '/js/lib/underscore.js', '/js/lib/backbone.js', '/js/lib/ace/ace.js']
   erb :index
 end
 
@@ -21,9 +33,9 @@ get '/login' do
   erb :login
 end
 
-get '/open' do
+post '/open' do
 end
 
-get '/save' do
+post '/save' do
 end
 

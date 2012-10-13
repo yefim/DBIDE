@@ -23,9 +23,12 @@
     <link rel='apple-touch-icon' sizes='72x72' href='images/apple-touch-icon-72x72.png'>
     <link rel='apple-touch-icon' sizes='114x114' href='images/apple-touch-icon-114x114.png'>
 
-    <script src='/js/lib/jquery.js'></script>
-    <script src='/js/lib/underscore.js'></script>
-    <script src='/js/lib/backbone.js'></script>
+    <% if @js %>
+      <% @js.each do |script| %>
+        <%= "<script src='#{script}'></script>" %>
+      <% end %>
+    <% end %>
+    <title>DBIDE</title>
   </head>
   <body>
     <%= erb :header %>
