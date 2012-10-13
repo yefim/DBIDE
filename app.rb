@@ -6,8 +6,17 @@ require_relative 'models'
 enable :sessions
 
 get '/' do
+  if !session['dropbox']
+    redirect '/login'
+  end
+
   session['dropbox'].get_access_token
-  client = DropboxClient.new(session['dropbox'], ACCESS_TYPE)
+  db_client = DropboxClient.new(session['dropbox'], ACCESS_TYPE)
+  @user = User.first(:dropbox_id => db_client.account_info['uid'])
+  if !@user
+    @user = User.create(:dropbox_id => db_client.account_info['uid'], 
+    :access_token => session['dropbox'].access_token)
+  end
 
   erb :index
 end
