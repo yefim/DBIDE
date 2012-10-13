@@ -16,6 +16,6 @@ class User
   property :current_file, String #full file path
 end
 
-DataMapper.auto_migrate!
+DataMapper.auto_upgrade!
 # ! means it can overwrite shit
 # ? is existential operator - (a.nil?) is like (a == nil)
