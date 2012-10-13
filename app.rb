@@ -50,7 +50,8 @@ end
 
 post '/open' do
   return if !$db_client
-  name = params[:path]
+
+  path = params[:path]
   content_type :json
   return db_client.get_file_and_metadata('/Public/DBIDE/#{path}').to_json
 end
