@@ -41,7 +41,7 @@ post '/new' do
 
   begin
     name = params[:name] || "Unnamed Project"
-    db_client.file_create_folder('/Public/DBIDE/#{name}')
+    $db_client.file_create_folder('/Public/DBIDE/#{name}')
     return true
   rescue DropboxError
     return false
@@ -53,9 +53,14 @@ post '/open' do
 
   path = params[:path]
   content_type :json
-  return db_client.get_file_and_metadata('/Public/DBIDE/#{path}').to_json
+  return $db_client.get_file_and_metadata('/Public/DBIDE/#{path}').to_json
 end
 
 post '/save' do
+  return if !$db_client
+
+  path = params[:path]
+  file = params[:content]
+  $db_client.put_file('/Public/DBIDE/#{path}', file, true)
 end
 
