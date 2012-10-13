@@ -17,7 +17,6 @@ get '/' do
     @user = User.create(
       dropbox_id: uid, 
       access_token: session['dropbox'].access_token)
-    db_client.file_create_folder('/Public/DBIDE')
     db_client.file_create_folder('/Public/DBIDE/Project1')
     # here, make it so we upload a dummy index.html file
   end
