@@ -1,4 +1,5 @@
 require 'sinatra'
+require 'dropbox_sdk'
 require_relative 'config'
 
 get '/' do
