@@ -28,6 +28,8 @@ get '/' do
 end
 
 get '/login' do
+  redirect '/' if session['dropbox']
+
   db_session = DropboxSession.new(APP_KEY, APP_SECRET)
   session['dropbox'] = db_session
   db_session.get_request_token
