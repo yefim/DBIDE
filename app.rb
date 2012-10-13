@@ -6,16 +6,17 @@ require_relative 'models'
 enable :sessions
 
 get '/' do
-  redirect '/login' if !session['dropbox']
+  redirect 'login' if !session['dropbox']
 
   session['dropbox'].get_access_token
   db_client = DropboxClient.new(session['dropbox'], ACCESS_TYPE)
-  @user = User.first(dropbox_id: db_client.account_info['uid'])
+  uid = db_client.account_info['uid']
+  @user = User.first(dropbox_id: uid)
+
   if !@user
     @user = User.create(
-      dropbox_id: db_client.account_info['uid'], 
-      access_token: session['dropbox'].access_token
-    )
+      dropbox_id: uid, 
+      access_token: session['dropbox'].access_token)
   end
 
   @js = ['/js/lib/jquery.js', '/js/lib/underscore.js', '/js/lib/backbone.js', '/js/lib/ace/ace.js']
