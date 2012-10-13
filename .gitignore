@@ -1,3 +1,4 @@
 views/js/*.js
 Gemfile.lock
 config.rb
+.DS_Store
