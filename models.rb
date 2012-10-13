@@ -14,6 +14,7 @@ class User
   property :dropbox_id, String
   property :current_project, String #folder within DBIDE folder
   property :current_file, String #full file path
+  property :last_save, DateTime #ratelimit saves to be nice to dropbox API
 end
 
 DataMapper.auto_upgrade!
