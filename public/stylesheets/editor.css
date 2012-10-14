@@ -1,3 +1,6 @@
+h5 img {
+  cursor: pointer;
+}
 .selected {
   background-color: #08C;
 }
