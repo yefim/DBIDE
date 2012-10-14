@@ -7,7 +7,7 @@ enable :sessions
 $db_client = nil
 
 get '/' do
-  redirect 'login' if !session['dropbox']
+  redirect 'login' if !session['dropbox'] || !session['dropbox'].authorized?
 
   session['dropbox'].get_access_token
   $db_client = DropboxClient.new(session['dropbox'], ACCESS_TYPE) if !$db_client
