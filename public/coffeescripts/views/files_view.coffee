@@ -16,11 +16,11 @@ class DBIDE.Views.FilesView extends DBIDE.Views.EditView
       view = new DBIDE.Views.FileView(model: file)
       views.push view.render()
     viewEls = _.pluck _.values(views), 'el'
-    # @.$(".contents").append viewEls
     @$el.find(".files").html viewEls
     @
 
-  expand: () ->
+  expand: (e) ->
+    return if e.target != @$el.find(".folder")[0]
     @collection.meta("expanded", true)
     @collection.open()
     window.editExists = false

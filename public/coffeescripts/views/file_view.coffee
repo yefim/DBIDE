@@ -6,12 +6,11 @@ class DBIDE.Views.FileView extends Backbone.View
     @model.on 'change', @setEditor
 
   events:
-    "click .file"   : "open"
-    "click #editor" : "saveFile"
+    "click .file"            : "open"
+    "click #editor"          : "saveFile"
     "keydown .new-file-name" : "createFile"
 
   render: () ->
-    console.log @model.toJSON()
     @$el.html _.template @template, @model.toJSON()
     @
 
@@ -22,7 +21,8 @@ class DBIDE.Views.FileView extends Backbone.View
   saveFile: () ->
     console.log "clicked bitch"
 
-  open: () ->
+  open: (e) ->
+    # return if $(e.target) != @$el.find(".file")[0]
     # @current_file = @model
     # @current_file.open()
     @setEditor()

@@ -5,7 +5,6 @@ class DBIDE.Views.MainView extends Backbone.View
     @projects = []
     @current_file = new DBIDE.Models.File()
     for project in options.projects
-      console.log project
       files_collection = new DBIDE.Collections.FilesCollection()
       files_collection.meta("is_dir", true)
       files_collection.meta("expanded", false)
