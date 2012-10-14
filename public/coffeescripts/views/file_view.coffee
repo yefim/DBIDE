@@ -30,7 +30,9 @@ class DBIDE.Views.FileView extends Backbone.View
     window.current_file = @model
     @setEditor()
     @model.open()
-    $("#current-path").html(@model.get("path").split("/Public/DBIDE/")[1]);
+    $("#current-path").html(window.current_file.get("path").split("/Public/DBIDE/")[1])
+    $link = $("#view-site")
+    $link.attr("href", $link.data("base") + window.current_file.get("path").split("/Public/DBIDE/")[1])
     @render()
     # do I need to reset on success?
 
@@ -40,6 +42,7 @@ class DBIDE.Views.FileView extends Backbone.View
       window.current_file = @model # bind current file to the new model
       @model.set "path", path
       @model.upload()
+      $("#current-path").html(window.current_file.get("path").split("/Public/DBIDE/")[1])
       window.editExists = false
       @render()
 
