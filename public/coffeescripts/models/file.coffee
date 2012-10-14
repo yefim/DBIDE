@@ -1,5 +1,6 @@
 class DBIDE.Models.File extends Backbone.Model
   defaults:
+    is_dir: false
     name: null
     project: null
     path: null
@@ -11,15 +12,22 @@ class DBIDE.Models.File extends Backbone.Model
     @save()
 
   open: () ->
+    @url = '/open'
+    @fetch(
+      data: $.params @toJSON()
+    )
 
 class DBIDE.Collections.FilesCollection extends Backbone.Collection
   model: DBIDE.Models.File
   
   defaults:
+    is_dir: true
     name: null
     project: null
     path: null
 
-  new: () ->
-
   open: () ->
+    @url = '/open'
+    @fetch(
+      data: $.params @toJSON()
+    )

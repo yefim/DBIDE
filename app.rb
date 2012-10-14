@@ -31,7 +31,7 @@ get '/' do
 
   @projects = $db_client.metadata("#{ROOT}", 25000, true, nil, nil, false).fetch("contents")
 
-  @js = ['lib/jquery', 'lib/underscore', 'lib/backbone', 'lib/ace/ace', 'dbide', 'models/file', 'views/main_view', 'views/files_view', 'views/file_view']
+  @js = ['lib/jquery', 'lib/underscore', 'lib/backbone', 'lib/ace/ace', 'dbide', 'models/file', 'views/files_view', 'views/file_view', 'views/main_view' ]
   erb :index
 end
 
@@ -58,12 +58,18 @@ post '/new' do
   end
 end
 
-post '/open' do
+get '/open' do
   return if !$db_client
 
   path = params[:path]
+  file = nil
+  if params[:is_dir]
+    file = $db_client.metadata(path, 25000, true, nil, nil, false).fetch("contents")
+  else
+    file = $db_client.get_file_and_metadata(path)
+  end
   content_type :json
-  return $db_client.get_file_and_metadata("#{ROOT}/#{path}").to_json
+  file.to_json
 end
 
 post '/save' do
