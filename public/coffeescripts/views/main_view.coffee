@@ -14,12 +14,15 @@ class DBIDE.Views.MainView extends Backbone.View
     # should just be a pointer to a file in one of the files_collection, to avoid fetching
     # or it could just be it's own model, however, it will need to be fetched every time
     # @current_file.on 'change', @render
+
+    window.current_file.on 'selected', @render
     @render()
 
   events:
-    "click .new-folder" : "newFolder"
+    "click .new-folder pull-right" : "newFolder"
   
-  render: () ->
+  render: () =>
+    console.log "selected changed"
     $("#filebrowser").html _.template @template
     # Render the projects file browser first
     views = []
