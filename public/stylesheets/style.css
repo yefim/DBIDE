@@ -39,6 +39,19 @@ hr.small {
   margin-top: 8px;
   margin-right: 4px;
 }
+
+.button.editor-button {
+  background: -webkit-gradient(linear, left top, left bottom, from(#33A0E8), to(#2180CE));
+  text-shadow: #355782 0 0px 0px;
+  color: white;
+  border-top: 1px #2270AB solid;
+  border-right: 1px #18639A solid;
+  border-bottom: 1px #0F568B solid;
+  border-left: 1px #18639A solid;
+}
+.editor-button:hover, editor-button.selected {
+  color:black;
+}
 .pull-right {
   float: right;
 }
