@@ -1,4 +1,4 @@
-class DBIDE.Views.FilesView extends DBIDE.Views.EditView
+class DBIDE.Views.FilesView extends Backbone.Views
   template: DBIDE.Templates.Files # need arrow in files template >Project1
 
   initialize: () ->
