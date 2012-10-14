@@ -8,5 +8,7 @@ root.DBIDE =
 
 String::display_name = () -> @match(/[^/]+$/)
 
+root.editExists = false
+
 $ ->
   editor = ace.edit("editor")
