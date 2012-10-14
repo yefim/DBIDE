@@ -1,24 +1,26 @@
-<div class='two columns'>
-  <h5>Folders</h5>
-  <hr class='small' />
-  <div id='filebrowser'>
-    <ul>
-      <li>Project 1</li>
+<div>
+  <div class='two columns'>
+    <h5>Folders</h5>
+    <hr class='small' />
+    <div id='filebrowser'>
       <ul>
-        <li>index.html</li>
-        <li>css</li>
+        <li>Project 1</li>
         <ul>
-          <li>style.css</li>
-        </ul>
-        <li>js</li>
-        <ul>
-          <li>jquery.js</li>
+          <li>index.html</li>
+          <li>css</li>
+          <ul>
+            <li>style.css</li>
+          </ul>
+          <li>js</li>
+          <ul>
+            <li>jquery.js</li>
+          </ul>
         </ul>
       </ul>
-    </ul>
+    </div>
   </div>
+  <div id='editor' class='fourteen columns'>testing balls</div>
 </div>
-<div id='editor' class='fourteen columns'>testing balls</div>
 <script type='text/javascript'>
   var editor = ace.edit("editor");
   editor.getSession().setMode("ace/mode/lua");
@@ -29,9 +31,11 @@
     current_file: <%= @current_file.to_json %>
   });
 </script>
-<button onclick='editor.setValue("YOU CHANGED IT")'>Change</button>
-<button onclick='alert(editor.getValue())'>Alert</button>
-<button onclick='editor.setKeyboardHandler(require("ace/keyboard/vim").handler)'>Vim</button>
-<button onclick='editor.setTheme("ace/theme/monokai")'>Theme</button>
+<div>
+  <button onclick='editor.setValue("YOU CHANGED IT")'>Change</button>
+  <button onclick='alert(editor.getValue())'>Alert</button>
+  <button onclick='editor.setKeyboardHandler(require("ace/keyboard/vim").handler)'>Vim</button>
+  <button onclick='editor.setTheme("ace/theme/monokai")'>Theme</button>
+</div>
 <div><%= @projects.to_json %></div>
 <div><%= @current_file.to_json %></div>

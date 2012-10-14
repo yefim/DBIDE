@@ -7,59 +7,11 @@
   margin-top: 8px;
 }
 
-#editor {
-  position: relative;
-  height: 400px;
-}
 hr.small {
   margin: 2px 0 6px;
-}
-div.indent {
-  margin: 0 0 0 12px;
-}
-p.file {
-  margin: 0 0 2px 0;
 }
 
 .button.full-width {
   line-height: 50px;
   margin-bottom: 8px;
-}
-
-div#filebrowser ul {
-  margin-bottom: 2px;
-}
-
-div#filebrowser ul ul {
-  margin-left: 12px;
-}
-
-div#filebrowser li {
-  line-height: 18px;
-  margin-bottom: 2px;
-}
-div#filebrowser li.clicked {
-  background-color: #DDDDDD;
-}
-div#filebrowser li:hover  {
-  cursor: pointer;
-  color: #000000;
-}
-
-
-
-.container {
-  width: 90%;
-}
-.container .two.columns {
-  max-width: 10%;
-  min-width: 100px;
-}
-.container .fourteen.columns {
-  min-width: 820px;
-  width: 90%;
-}
-.container .columns {
-  margin-left: 0;
-  margin-right: 0;
 }
