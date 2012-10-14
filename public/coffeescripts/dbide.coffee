@@ -21,9 +21,10 @@ $ ->
   editor.getSession().setUseSoftTabs(true)
   editor.getSession().setTabSize(2)
 
-  suffix = window.current_file.get("path").match(/[^\.]+$/)[0]
-  lang = LANGUAGE_MAP[suffix] || suffix
-  editor.getSession().setMode("ace/mode/#{lang}")
+  if window.current_file.get("path")
+    suffix = window.current_file.get("path").match(/[^\.]+$/)[0]
+    lang = LANGUAGE_MAP[suffix] || suffix
+    editor.getSession().setMode("ace/mode/#{lang}") # if lang is not a real lang, it fucks up a bit
 
   editor.focus()
 
@@ -32,7 +33,9 @@ $ ->
     bindKey: {win: 'Ctrl-S',  mac: 'Command-S'},
     exec: (editor) ->
       # time-stamp should show
-      window.current_file.set "content", editor.getValue()
+      window.current_file.set({"content": editor.getValue()},
+        silent: true
+      )
       window.current_file.upload()
       return true # required
   )
