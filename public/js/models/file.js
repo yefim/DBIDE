@@ -15,6 +15,7 @@
       name: null,
       project: null,
       path: null,
+      current: false,
       content: null
     };
 

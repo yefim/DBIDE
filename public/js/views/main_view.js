@@ -11,21 +11,39 @@
       return MainView.__super__.constructor.apply(this, arguments);
     }
 
-    MainView.prototype.initialize = function() {
-      var project, project_collection, _i, _len, _ref, _results;
+    MainView.prototype.template = "";
+
+    MainView.prototype.initialize = function(options) {
+      var files_collection, project, _i, _len, _ref;
       this.projects = [];
+      this.current_file = new DBIDE.Models.File();
       _ref = options.projects;
-      _results = [];
       for (_i = 0, _len = _ref.length; _i < _len; _i++) {
         project = _ref[_i];
-        project_collection = new DBIDE.Collection.FilesCollection();
-        project_collection.reset(project);
-        _results.push(this.projects.push(project_collection));
+        console.log(project);
+        files_collection = new DBIDE.Collections.FilesCollection();
+        files_collection.reset(project);
+        this.projects.push(files_collection);
       }
-      return _results;
+      this.current_file.on('change', this.render);
+      return this.render();
     };
 
-    MainView.prototype.render = function() {};
+    MainView.prototype.render = function() {
+      var files_collection, view, viewEls, views, _i, _len, _ref;
+      views = [];
+      _ref = this.projects;
+      for (_i = 0, _len = _ref.length; _i < _len; _i++) {
+        files_collection = _ref[_i];
+        view = new DBIDE.Views.FilesView({
+          collection: files_collection
+        });
+        views.push(view.render());
+      }
+      viewEls = _.pluck(_.values(views), 'el');
+      this.$("#file-browser").html(viewEls);
+      return this.$("#editor").html(this.current_file.contents);
+    };
 
     return MainView;
 
