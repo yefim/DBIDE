@@ -47,6 +47,7 @@ get '/' do
     @current_file = {}
   end
 
+  @css = ['base', 'skeleton', 'layout', 'style', 'editor']
   @js = ['lib/jquery', 'lib/underscore', 'lib/backbone', 'lib/ace/ace', 'lib/ace/keybindings-vim', 'templates/templates', 'dbide', 'models/file', 'views/files_view', 'views/file_view', 'views/main_view' ]
   erb :index
 end
@@ -59,6 +60,7 @@ get '/login' do
   db_session.get_request_token
   @authorize_url = db_session.get_authorize_url(SITE_URL)
 
+  @css = ['base', 'skeleton', 'layout', 'style']
   erb :login
 end
 
