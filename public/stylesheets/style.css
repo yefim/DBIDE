@@ -49,7 +49,7 @@ hr.small {
   border-bottom: 1px #0F568B solid;
   border-left: 1px #18639A solid;
 }
-.editor-button:hover, editor-button.selected {
+.editor-button:hover, .editor-button.selected {
   color:black;
 }
 .pull-right {
