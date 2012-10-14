@@ -1,5 +1,6 @@
 class DBIDE.Views.FilesView extends DBIDE.Views.EditView
   template: DBIDE.Templates.Files # need arrow in files template >Project1
+  createTemplate: DBIDE.Templates.CreateFile
 
   initialize: () ->
     @collection.on 'reset', @render
@@ -42,8 +43,8 @@ class DBIDE.Views.FilesView extends DBIDE.Views.EditView
     window.editExists = true
 
   renderEdit: () ->
-    @$el.html _.template @createTemplate, @model.toJSON() if !editExists
+    @$el.html _.template @createTemplate if !editExists
     window.editExists = true
     @
 
-  unrenderEdit: () -> @$el.remove()
+  unrenderEdit: () -> @render()

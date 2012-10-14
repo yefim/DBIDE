@@ -20,8 +20,12 @@ $ ->
     $(".editor-button").removeClass("selected")
     $(e.target).addClass("selected")
     mode = $(e.target).text().toLowerCase()
-    mode = "" if mode == "normal"
-    window.editor.setKeyboardHandler(require("ace/keyboard/#{mode}").handler)
+    if mode == "normal"
+      window.editor.setKeyboardHandler(null)
+    else
+      mode = "ace/keyboard/#{mode}"
+      window.editor.setKeyboardHandler(require(mode).handler)
+    window.editor.focus()
     $.ajax(
       type: "POST",
       url: "/mode",
@@ -32,7 +36,10 @@ $ ->
   editor.setTheme("ace/theme/monokai")
   editor.getSession().setUseSoftTabs(true)
   editor.getSession().setTabSize(2)
-  # editor.setKeyboardHandler(require("ace/keyboard/#{MODE}").handler)
+  if MODE.length
+    editor.setKeyboardHandler(require(MODE).handler)
+  else
+    editor.setKeyboardHandler(null)
 
   if window.current_file.get("path")
     suffix = window.current_file.get("path").match(/[^\.]+$/)[0]
