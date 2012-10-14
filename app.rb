@@ -7,11 +7,11 @@ enable :sessions
 $db_client = nil
 
 def open_file(path)
-  $db_client.get_file(path)
+  db_client.get_file(path)
 end
 
 def open_folder(path)
-  $db_client.metadata(path, 25000, true, nil, nil, false).fetch("contents")
+  db_client.metadata(path, 25000, true, nil, nil, false).fetch("contents")
 end
 
 get '/' do
@@ -23,9 +23,9 @@ get '/' do
     redirect '/login'
   end
   
-  $db_client ||= DropboxClient.new(session['dropbox'], ACCESS_TYPE)
-  uid = $db_client.account_info['uid']
-  @user = User.first(dropbox_id: uid)
+  db_client ||= DropboxClient.new(session['dropbox'], ACCESS_TYPE)
+  uid = db_client.account_info['uid']
+  @user = User.get_first(dropbox_id: uid)
   @new_user = false
 
   @projects = {}
@@ -33,7 +33,7 @@ get '/' do
     @user = User.create(
       dropbox_id: uid, 
       access_token: session['dropbox'].access_token)
-    $db_client.put_file("#{ROOT}/Project1/index.html", 'Hello World', true)
+    db_client.put_file("#{ROOT}/Project1/index.html", 'Hello World', true)
     @new_user = true
   end
 
@@ -84,11 +84,11 @@ get '/logout' do
 end
 
 post '/new' do
-  return if !$db_client
+  return if !db_client
 
   begin
     name = params[:name] || "Unnamed Project"
-    $db_client.file_create_folder("#{ROOT}/#{name}")
+    db_client.file_create_folder("#{ROOT}/#{name}")
     return true
   rescue DropboxError
     return false
@@ -96,7 +96,7 @@ post '/new' do
 end
 
 get '/open' do
-  return if !$db_client
+  return if !db_client
 
   path = params[:path]
   file_or_folder = nil
@@ -115,14 +115,14 @@ get '/open' do
 end
 
 post '/save' do
-  return if !$db_client
+  return if !db_client
   params = JSON.parse request.body.read
   path = params["path"]
   file = params["content"] || ""
-  $db_client.put_file(path, file, true)
+  db_client.put_file(path, file, true)
 
   # current file == last saved file
-  uid = $db_client.account_info['uid']
+  uid = db_client.account_info['uid']
   @user = User.first(dropbox_id: uid)
   @user.update(current_file: path) # should also set last saves here
 
@@ -132,7 +132,7 @@ end
 
 post '/mode' do
   mode = params["mode"]
-  uid = $db_client.account_info['uid']
+  uid = db_client.account_info['uid']
   @user = User.first(dropbox_id: uid)
   @user.update(:editor => mode)
 end

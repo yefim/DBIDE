@@ -37,7 +37,7 @@ $ ->
   editor.getSession().setUseSoftTabs(true)
   editor.getSession().setTabSize(2)
   if MODE.length
-    editor.setKeyboardHandler(require(MODE).handler)
+    editor.setKeyboardHandler(require("ace/keyboard/#{MODE}").handler)
   else
     editor.setKeyboardHandler(null)
 

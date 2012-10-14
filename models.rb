@@ -15,7 +15,7 @@ class User
   property :current_folder, String, :default => '/Public/DBIDE/Project1' #folder within DBIDE folder
   property :current_file, String, :default => '/Public/DBIDE/Project1/index.html' #full file path
   property :last_save, DateTime #ratelimit saves to be nice to dropbox API
-  property :editor, String, :default => 'default'
+  property :editor, String, :default => 'normal'
 end
 
 DataMapper.auto_upgrade!
