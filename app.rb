@@ -7,9 +7,14 @@ enable :sessions
 $db_client = nil
 
 get '/' do
-  redirect 'login' if !session['dropbox'] || !session['dropbox'].authorized?
+  begin
+    redirect '/login' if !session['dropbox']
 
-  session['dropbox'].get_access_token
+    session['dropbox'].get_access_token
+  rescue DropboxError
+    redirect '/login'
+  end
+
   $db_client = DropboxClient.new(session['dropbox'], ACCESS_TYPE) if !$db_client
   uid = $db_client.account_info['uid']
   @user = User.first(dropbox_id: uid)
@@ -20,11 +25,11 @@ get '/' do
     @user = User.create(
       dropbox_id: uid, 
       access_token: session['dropbox'].access_token)
-    $db_client.put_file("#{ROOT}/Project1/index.html", 'Hello World')
+    $db_client.put_file("#{ROOT}/Project1/index.html", 'Hello World', true)
     @new_user = true
   end
 
-  @projects = $db_client.metadata("#{ROOT}", 25000, true, nil, nil, true).fetch("contents")
+  @projects = $db_client.metadata("#{ROOT}", 25000, true, nil, nil, false).fetch("contents")
 
   @js = ['lib/jquery', 'lib/underscore', 'lib/backbone', 'lib/ace/ace', 'dbide']
   erb :index
