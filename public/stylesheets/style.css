@@ -15,21 +15,26 @@ p.file {
   margin: 0 0 2px 0;
 }
 
-ul {
+.button.full-width {
+  line-height: 50px;
+}
+
+div#filebrowser ul {
   margin-bottom: 2px;
 }
-ul ul {
+
+div#filebrowser ul ul {
   margin-left: 12px;
 }
 
-li {
+div#filebrowser li {
   line-height: 18px;
   margin-bottom: 2px;
 }
-li.clicked {
+div#filebrowser li.clicked {
   background-color: #DDDDDD;
 }
-li:hover  {
+div#filebrowser li:hover  {
   cursor: pointer;
   color: #000000;
 }
