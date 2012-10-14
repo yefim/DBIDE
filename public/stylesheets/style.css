@@ -34,10 +34,6 @@ hr.small {
   font-weight: bold;
 }
 
-.button.logout {
-  float: right;
-  margin-top: 8px;
-}
 .button.command {
   float: right;
   margin-top: 8px;
