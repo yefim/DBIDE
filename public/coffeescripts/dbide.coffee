@@ -5,5 +5,7 @@ root.DBIDE =
   Collections: {}
   Views: {}
 
+String::display_name = () -> @match(/[^/]+$/)
+
 $ ->
   editor = ace.edit("editor")
