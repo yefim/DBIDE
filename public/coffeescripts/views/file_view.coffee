@@ -24,10 +24,10 @@ class DBIDE.Views.FileView extends Backbone.View
 
   open: (e) ->
     # return if $(e.target) != @$el.find(".file")[0]
-    # @current_file = @model
-    # @current_file.open()
+    window.current_file = @model
     @setEditor()
     @model.open()
+    # do I need to reset on success?
 
   createFile: (e) ->
     if e.keyCode == 13

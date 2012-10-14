@@ -22,7 +22,10 @@ $ ->
     name: 'save',
     bindKey: {win: 'Ctrl-S',  mac: 'Command-S'},
     exec: (editor) ->
-      console.log('save')
+      # time-stamp should show
+      window.current_file.set "content", editor.getValue()
+      window.current_file.upload()
+      return true # required
   )
   editor.commands.addCommand(
     name: 'unbind-cr',
