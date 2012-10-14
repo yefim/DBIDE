@@ -7,4 +7,3 @@ root.DBIDE =
 
 $ ->
   editor = ace.edit("editor")
-  # initialize mainview in here or in index.erb
