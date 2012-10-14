@@ -20,8 +20,7 @@
       <button class='editor-button command button <% if @editor.include? "vim" %>selected<% end %>'>Vim</button>
       <button class='editor-button command button <% if @editor.include? "emacs" %>selected<% end %>'>Emacs</button>
       <button class='editor-button command button <% if @editor == "" %>selected<% end %>'>Normal</button>
-      <a href='http://dl.dropbox.com/u/<%= @user.dropbox_id %>/DBIDE/' class='viewsite command button' target='_blank'>View Site</a>
-
+      <a id='view-site' data-base='http://dl.dropbox.com/u/<%= @user.dropbox_id %>/DBIDE/' href='http://dl.dropbox.com/u/<%= @user.dropbox_id %>/DBIDE/<%= @current_file[:path].split("DBIDE/")[1] %>' class='viewsite command button' target='_blank'>View Site</a>
   <% end %>
 </div>
 <hr class='half-bottom' />
