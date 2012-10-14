@@ -28,7 +28,6 @@ class DBIDE.Views.FileView extends Backbone.View
   open: (e) ->
     # return if $(e.target) != @$el.find(".file")[0]
     window.current_file = @model
-    @trigger('selected')
     @setEditor()
     @model.open()
     @render()
