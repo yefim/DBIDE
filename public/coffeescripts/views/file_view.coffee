@@ -1,4 +1,4 @@
-class DBIDE.Views.FileView extends Backbone.View
+class DBIDE.Views.FileView extends DBIDE.Views.EditView
   template: DBIDE.Templates.File # files only, no directories
   createTemplate: DBIDE.Templates.CreateFile
 
@@ -28,15 +28,9 @@ class DBIDE.Views.FileView extends Backbone.View
     @setEditor()
     @model.open()
 
-  renderEdit: () ->
-    @$el.html _.template @createTemplate, @model.toJSON() if !editExists
-    window.editExists = true
-    @
-
   createFile: (e) ->
     if e.keyCode == 13
       path = "#{@model.collection.meta('path')}/#{$(e.currentTarget).val()}"
       @model.set "path", path
       @model.upload()
       window.editExists = false
-      @unrenderEdit()
