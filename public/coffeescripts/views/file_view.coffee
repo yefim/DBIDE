@@ -7,7 +7,6 @@ class DBIDE.Views.FileView extends Backbone.View
 
   events:
     "click .file"   : "open"
-    "click .file" : "openFile"
     "click #editor" : "saveFile"
     "keydown .new-file-name" : "createFile"
 
