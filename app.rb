@@ -1,6 +1,5 @@
 require 'sinatra'
 require 'dropbox_sdk'
-require 'debugger'
 require_relative 'config'
 require_relative 'models'
 
