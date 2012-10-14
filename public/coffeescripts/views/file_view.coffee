@@ -11,12 +11,11 @@ class DBIDE.Views.FileView extends DBIDE.Views.EditView
     "keydown .new-file-name" : "createFile"
 
   render: () ->
-    console.log "rendering single file"
+    console.log @model.toJSON()
     @$el.html _.template @template, @model.toJSON()
     @
 
   setEditor: () =>
-    console.log @model.get("content")
     window.editor.setValue @model.get("content")
     window.editor.gotoLine 1
 
@@ -26,7 +25,6 @@ class DBIDE.Views.FileView extends DBIDE.Views.EditView
   open: () ->
     # @current_file = @model
     # @current_file.open()
-    @render()
     @setEditor()
     @model.open()
 
@@ -36,6 +34,4 @@ class DBIDE.Views.FileView extends DBIDE.Views.EditView
       @model.set "path", path
       @model.upload()
       window.editExists = false
-      unrenderEdit()
-
-  unrenderEdit: () -> @$el.remove()
+      @render()

@@ -9,7 +9,7 @@ DBIDE.Templates.File = '''
 '''
 
 DBIDE.Templates.CreateFile = '''
-  <li class='create'><input type="text" class="new-file-name" placeholder="name"></li>
+  <li class='create'><input type="text" class="new-file-name" placeholder="Enter to Save"></li>
 '''
 
 DBIDE.Templates.Files = '''
