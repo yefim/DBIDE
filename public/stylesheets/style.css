@@ -1,6 +1,7 @@
 .logo {
   margin-top: 20px;
   margin-bottom: 6px;
+  width: 400px;
 }
 
 #header {
@@ -31,6 +32,10 @@ hr.small {
   box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3),inset 0px 1px 0px #83C5F1;
   font-family: "Open Sans","lucida grande","Segoe UI",arial,verdana,"lucida sans unicode",tahoma,sans-serif;
   font-weight: bold;
+}
+.button.logout {
+  float: right;
+  margin-top: 8px;
 }
 .pull-right {
   float: right;
