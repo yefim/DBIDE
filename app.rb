@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'dropbox_sdk'
+require 'debugger'
 require_relative 'config'
 require_relative 'models'
 
@@ -63,7 +64,7 @@ get '/open' do
 
   path = params[:path]
   file = nil
-  if params[:is_dir]
+  if params[:is_dir] == "true"
     file = $db_client.metadata(path, 25000, true, nil, nil, false).fetch("contents")
   else
     file = $db_client.get_file_and_metadata(path)
