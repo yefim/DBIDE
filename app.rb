@@ -6,6 +6,14 @@ require_relative 'models'
 enable :sessions
 $db_client = nil
 
+def open_file(path)
+  $db_client.get_file_and_metadata(path)
+end
+
+def open_folder(path)
+  $db_client.metadata(path, 25000, true, nil, nil, false).fetch("contents")
+end
+
 get '/' do
   begin
     redirect '/login' if !session['dropbox']
@@ -29,9 +37,11 @@ get '/' do
     @new_user = true
   end
 
-  @projects = $db_client.metadata("#{ROOT}", 25000, true, nil, nil, false).fetch("contents")
-  @current_project = "#{ROOT}/#{@user.current_project}"
-  @current_file = "#{ROOT}/#{@user.current_file}"
+  @projects = open_folder(ROOT).map! {|x| x["path"] if x["is_dir"]}
+  @current_file = {
+    path: @user.current_file,
+    content: open_file(@user.current_file)
+  }
 
   @js = ['lib/jquery', 'lib/underscore', 'lib/backbone', 'lib/ace/ace', 'dbide', 'models/file', 'views/files_view', 'views/file_view', 'views/main_view' ]
   erb :index
@@ -64,14 +74,14 @@ get '/open' do
   return if !$db_client
 
   path = params[:path]
-  file = nil
+  file_or_folder = nil
   if params[:is_dir]
-    file = $db_client.metadata(path, 25000, true, nil, nil, false).fetch("contents")
+    file_or_folder = open_folder(path)
   else
-    file = $db_client.get_file_and_metadata(path)
+    file_or_folder = open_file(path)
   end
   content_type :json
-  file.to_json
+  file_or_folder.to_json
 end
 
 post '/save' do

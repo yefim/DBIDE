@@ -12,8 +12,8 @@ class User
   property :email, String
   property :access_token, String
   property :dropbox_id, String
-  property :current_project, String, :default => 'Project1' #folder within DBIDE folder
-  property :current_file, String, :default => 'index.html' #full file path
+  property :current_folder, String, :default => '/Public/DBIDE/Project1' #folder within DBIDE folder
+  property :current_file, String, :default => '/Public/DBIDE/Project1/index.html' #full file path
   property :last_save, DateTime #ratelimit saves to be nice to dropbox API
 end
 
