@@ -6,6 +6,7 @@ class DBIDE.Views.FileView extends Backbone.View
     "click .file" : "openFile"
 
   render: () ->
+    console.log "rendering single file"
     @$el.html ""
     @
 

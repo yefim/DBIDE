@@ -3,6 +3,7 @@ class DBIDE.Views.FilesView extends Backbone.View
   initialize: () ->
 
   render: () ->
+    console.log "rendering files view"
     views = []
     @collection.each (file) ->
       # if file.is_dir recurse!!
