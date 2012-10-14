@@ -3,18 +3,17 @@ class DBIDE.Views.MainView extends Backbone.View
 
   initialize: (options) ->
     @projects = []
-    @current_file = new DBIDE.Models.File()
     for project in options.projects
-      console.log project
       files_collection = new DBIDE.Collections.FilesCollection()
       files_collection.meta("is_dir", true)
+      files_collection.meta("expanded", false)
       files_collection.meta("path", project)
       # find the current file and set current_file = true for rendering
       @projects.push files_collection
     # initialize the current file
     # should just be a pointer to a file in one of the files_collection, to avoid fetching
     # or it could just be it's own model, however, it will need to be fetched every time
-    @current_file.on 'change', @render
+    # @current_file.on 'change', @render
     @render()
 
   events:
