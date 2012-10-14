@@ -18,12 +18,8 @@
     </ul>
   </div>
 </div>
-<div id='editor' class='fourteen columns'>testing balls</div>
+<div id='editor' class='fourteen columns'><%= @current_file["content"] %></div>
 <script type='text/javascript'>
-  var editor = ace.edit("editor");
-  editor.getSession().setMode("ace/mode/lua");
-  editor.getSession().setUseSoftTabs(true);
-  editor.getSession().setTabSize(2);
   window.App = new DBIDE.Views.MainView({
     projects: <%= @projects.to_json %>,
     current_file: <%= @current_file.to_json %>
