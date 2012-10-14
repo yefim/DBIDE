@@ -30,6 +30,8 @@ get '/' do
   end
 
   @projects = $db_client.metadata("#{ROOT}", 25000, true, nil, nil, false).fetch("contents")
+  @current_project = "#{ROOT}/#{@user.current_project}"
+  @current_file = "#{ROOT}/#{@user.current_file}"
 
   @js = ['lib/jquery', 'lib/underscore', 'lib/backbone', 'lib/ace/ace', 'dbide', 'models/file', 'views/files_view', 'views/file_view', 'views/main_view' ]
   erb :index
