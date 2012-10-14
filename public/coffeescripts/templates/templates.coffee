@@ -13,6 +13,6 @@ DBIDE.Templates.CreateFile = '''
 '''
 
 DBIDE.Templates.Files = '''
-  <li class='folder'><img src='<%= expanded ? "open" : "closde %>'><%= path.display_name() %> <img class="new-file pull-right" style="vertical-align:-1px;" src="/images/plus.png"></li>
+  <li class='folder'><img src='<%= expanded ? "open" : "closde" %>'><%= path.display_name() %> <img class="new-file pull-right" style="vertical-align:-1px;" src="/images/plus.png"></li>
   <ul class='files'></ul>
 '''
