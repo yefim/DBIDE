@@ -96,11 +96,8 @@ get '/open' do
   file_or_folder = nil
 
   if params[:is_dir] != "false"
-    # might have to use the map here?
-    file_or_folder = open_folder(path).map! do |folder|
-      {
-        path:
-    end
+    # might have to use the map here? to extract, path and is_dir
+    file_or_folder = open_folder(path)
   else
     file_or_folder = {
       path: path,

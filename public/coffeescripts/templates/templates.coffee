@@ -5,7 +5,7 @@ DBIDE.Templates.Main = '''
 '''
 
 DBIDE.Templates.File = '''
-  <li class='file'><%= path.display_name() %></li>
+  <li class='file <%= window.current_file.get("path") === path ? "selected" : "" %>'><%= path.display_name() %></li>
 '''
 
 DBIDE.Templates.CreateFile = '''
