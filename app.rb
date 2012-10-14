@@ -63,9 +63,9 @@ get '/open' do
 
   path = params[:path]
   if params[:is_dir]
-    return $db_client.get_file_and_metadata("#{ROOT}/#{path}")
-  else
     return $db_client.metadata("#{ROOT}/#{path}", 25000, true, nil, nil, false).fetch("contents")
+  else
+    return $db_client.get_file_and_metadata("#{ROOT}/#{path}")
   end
 end
 
