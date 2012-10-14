@@ -62,11 +62,14 @@ get '/open' do
   return if !$db_client
 
   path = params[:path]
+  file = nil
   if params[:is_dir]
-    return $db_client.metadata("#{ROOT}/#{path}", 25000, true, nil, nil, false).fetch("contents")
+    file = $db_client.metadata(path, 25000, true, nil, nil, false).fetch("contents")
   else
-    return $db_client.get_file_and_metadata("#{ROOT}/#{path}")
+    file = $db_client.get_file_and_metadata(path)
   end
+  content_type :json
+  file.to_json
 end
 
 post '/save' do
