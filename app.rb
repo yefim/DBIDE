@@ -24,7 +24,7 @@ get '/' do
     @new_user = true
   end
 
-  @projects = $db_client.metadata("#{ROOT}", 25000, true, nil, nil, true).fetch("contents")
+  @projects = $db_client.metadata("#{ROOT}", 25000, true, nil, nil, false).fetch("contents")
 
   @js = ['lib/jquery', 'lib/underscore', 'lib/backbone', 'lib/ace/ace', 'dbide', 'models/file', 'views/main_view']
   erb :index
