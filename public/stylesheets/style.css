@@ -5,3 +5,31 @@
   position: relative;
   height: 400px;
 }
+hr.small {
+  margin: 2px 0 6px;
+}
+div.indent {
+  margin: 0 0 0 12px;
+}
+p.file {
+  margin: 0 0 2px 0;
+}
+
+ul {
+  margin-bottom: 2px;
+}
+ul ul {
+  margin-left: 12px;
+}
+
+li {
+  line-height: 18px;
+  margin-bottom: 2px;
+}
+li.clicked {
+  background-color: #DDDDDD;
+}
+li:hover  {
+  cursor: pointer;
+  color: #000000;
+}
