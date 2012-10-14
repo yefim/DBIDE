@@ -1,0 +1,45 @@
+.logo {
+  margin-top: 0px;
+}
+
+div#filebrowser ul {
+  margin-bottom: 2px;
+}
+
+div#filebrowser ul ul {
+  margin-left: 12px;
+}
+
+div#filebrowser li {
+  line-height: 18px;
+  margin-bottom: 2px;
+}
+div#filebrowser li.clicked {
+  background-color: #DDDDDD;
+}
+div#filebrowser li:hover  {
+  cursor: pointer;
+  color: #000000;
+}
+
+#editor {
+  position: relative;
+  height: 100%;
+  min-height: 400px;
+}
+
+.container {
+  width: 90%;
+}
+.container .two.columns {
+  max-width: 10%;
+  min-width: 100px;
+}
+.container .fourteen.columns {
+  min-width: 700px;
+  width: 90%;
+}
+.container .columns {
+  margin-left: 0;
+  margin-right: 4px;
+}
