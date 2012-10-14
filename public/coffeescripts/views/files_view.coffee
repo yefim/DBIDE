@@ -1,4 +1,4 @@
-class DBIDE.Views.FilesView extends Backbone.Views
+class DBIDE.Views.FilesView extends Backbone.View
   template: DBIDE.Templates.Files # need arrow in files template >Project1
 
   initialize: () ->
@@ -30,3 +30,10 @@ class DBIDE.Views.FilesView extends Backbone.Views
     view = new DBIDE.Views.FileView(model: file)
     @$el.find(".files").append view.renderEdit().el
     window.editExists = true
+
+  renderEdit: () ->
+    @$el.html _.template @createTemplate, @model.toJSON() if !editExists
+    window.editExists = true
+    @
+
+  unrenderEdit: () -> @$el.remove()

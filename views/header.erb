@@ -7,8 +7,11 @@
       <a href='<%= @authorize_url %>' class='full-width button'>Login with Dropbox</a>
     </div>
   <% else %>
-    <div class='sixteen columns'>
+    <div class='twelve columns'>
       <h1 class='logo'>Dropbox IDE</h1>
+    </div>
+    <div class='four columns'>
+      <a href='/logout' class='full-width button'>Logout</a>
     </div>
   <% end %>
 </div>
