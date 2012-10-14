@@ -69,3 +69,9 @@ hr.small {
 .pull-right {
   float: right;
 }
+
+.screenshot {
+  width:620px;
+  height:430px;
+  box-shadow:0 0 2px #eee;
+}
