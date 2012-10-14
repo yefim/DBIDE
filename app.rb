@@ -68,4 +68,3 @@ post '/save' do
   file = params[:content]
   $db_client.put_file('#{ROOT}/#{path}', file, true)
 end
-
