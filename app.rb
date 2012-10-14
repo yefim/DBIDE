@@ -12,7 +12,7 @@ def open_file(path)
 end
 
 def open_folder(path)
-  $db_client.get_file_and_metadata(path, 25000, true, nil, nil, false)
+  $db_client.metadata(path, 25000, true, nil, nil, false).fetch("contents")
 end
 
 get '/' do
