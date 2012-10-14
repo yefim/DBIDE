@@ -6,4 +6,4 @@ public/js/templates
 Gemfile.lock
 config.rb
 .DS_Store
-.swp
+*.swp

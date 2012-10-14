@@ -1,5 +1,9 @@
-.new-file-name {
+.selected {
+  background-color: #08C;
+}
+.create input {
   padding: 0;
+  margin: 0;
 }
 .logo {
   margin-top: 0px;

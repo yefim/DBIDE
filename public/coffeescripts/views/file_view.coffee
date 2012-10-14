@@ -6,41 +6,42 @@ class DBIDE.Views.FileView extends Backbone.View
     @model.on 'change', @setEditor
 
   events:
-    "click .file"   : "open"
-    "click #editor" : "saveFile"
+    "click .file"            : "open"
+    "click #editor"          : "saveFile"
     "keydown .new-file-name" : "createFile"
 
   render: () ->
-    console.log "rendering single file"
     @$el.html _.template @template, @model.toJSON()
     @
 
   setEditor: () =>
-    console.log @model.get("content")
     window.editor.setValue @model.get("content")
-    window.editor.gotoLine 1
+    window.editor.gotoLine 1 # should not always do this :/
+    suffix = @model.get("path").match(/[^\.]+$/)[0]
+    lang = window.LANGUAGE_MAP[suffix] || suffix
+    window.editor.getSession().setMode("ace/mode/#{lang}")
+    window.editor.focus()
 
   saveFile: () ->
     console.log "clicked bitch"
 
-  open: () ->
-    # @current_file = @model
-    # @current_file.open()
-    @render()
+  open: (e) ->
+    # return if $(e.target) != @$el.find(".file")[0]
+    window.current_file = @model
     @setEditor()
     @model.open()
+    # do I need to reset on success?
 
   createFile: (e) ->
     if e.keyCode == 13
       path = "#{@model.collection.meta('path')}/#{$(e.currentTarget).val()}"
+      window.current_file = @model # bind current file to the new model
       @model.set "path", path
       @model.upload()
       window.editExists = false
-      @unrenderEdit()
+      @render()
 
   renderEdit: () ->
     @$el.html _.template @createTemplate, @model.toJSON() if !editExists
     window.editExists = true
     @
-
-  unrenderEdit: () -> @$el.remove()
