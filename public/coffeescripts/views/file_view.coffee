@@ -1,5 +1,5 @@
 class DBIDE.Views.FileView extends Backbone.View
-  template: "" # files only, no directories
+  template: DBIDE.Templates.File # files only, no directories
   initialize: () ->
 
   events:
@@ -7,7 +7,7 @@ class DBIDE.Views.FileView extends Backbone.View
 
   render: () ->
     console.log "rendering single file"
-    @$el.html ""
+    @$el.html _.template @template, @model.toJSON()
     @
 
   openFile: () ->

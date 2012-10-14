@@ -1,5 +1,5 @@
 class DBIDE.Views.MainView extends Backbone.View
-  template: "" # underscorejs template for the outer wrapper?
+  template: DBIDE.Templates.Main # underscorejs template for the outer wrapper?
 
   initialize: (options) ->
     @projects = []

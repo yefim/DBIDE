@@ -1,9 +1,14 @@
 class DBIDE.Views.FilesView extends Backbone.View
-  template: "" # need arrow in files template >Project1
+  template: DBIDE.Templates.Files # need arrow in files template >Project1
   initialize: () ->
+    @collection.on 'reset', @render
 
-  render: () ->
-    console.log "rendering files view"
+  events:
+    "click .folder" : "expand"
+
+  render: () =>
+    console.log @collection._meta
+    @$el.html _.template @template, @collection._meta
     views = []
     @collection.each (file) ->
       # if file.is_dir recurse!!
@@ -11,5 +16,10 @@ class DBIDE.Views.FilesView extends Backbone.View
       views.push view.render()
     viewEls = _.pluck _.values(views), 'el'
     # @.$(".contents").append viewEls
-    @$el.html viewEls
+    @$el.find(".files").html viewEls
     @
+
+  expand: () ->
+    console.log "expanded"
+    @collection.open()
+    console.log @collection
