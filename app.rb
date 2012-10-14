@@ -1,10 +1,19 @@
 require 'sinatra'
 require 'dropbox_sdk'
+require 'debugger'
 require_relative 'config'
 require_relative 'models'
 
 enable :sessions
 $db_client = nil
+
+def open_file(path)
+  $db_client.get_file(path)
+end
+
+def open_folder(path)
+  $db_client.metadata(path, 25000, true, nil, nil, false).fetch("contents")
+end
 
 get '/' do
   begin
@@ -29,9 +38,17 @@ get '/' do
     @new_user = true
   end
 
-  @projects = $db_client.metadata("#{ROOT}", 25000, true, nil, nil, false).fetch("contents")
+  @projects = open_folder(ROOT).map! {|x| x["path"] if x["is_dir"]}
+  begin
+    @current_file = {
+      path: @user.current_file,
+      content: open_file(@user.current_file)
+    }
+  rescue DropboxError
+    @current_file = {}
+  end
 
-  @js = ['lib/jquery', 'lib/underscore', 'lib/backbone', 'lib/ace/ace', 'lib/ace/keybindings-vim', 'dbide', 'models/file', 'views/files_view', 'views/file_view', 'views/main_view' ]
+  @js = ['lib/jquery', 'lib/underscore', 'lib/backbone', 'lib/ace/ace', 'lib/ace/keybindings-vim', 'templates/templates', 'dbide', 'models/file', 'views/files_view', 'views/file_view', 'views/main_view' ]
   erb :index
 end
 
@@ -62,14 +79,15 @@ get '/open' do
   return if !$db_client
 
   path = params[:path]
-  file = nil
-  if params[:is_dir]
-    file = $db_client.metadata(path, 25000, true, nil, nil, false).fetch("contents")
+  file_or_folder = nil
+
+  if params[:is_dir] != "false"
+    file_or_folder = open_folder(path)
   else
-    file = $db_client.get_file_and_metadata(path)
+    file_or_folder = open_file(path)
   end
   content_type :json
-  file.to_json
+  file_or_folder.to_json
 end
 
 post '/save' do
