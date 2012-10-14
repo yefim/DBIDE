@@ -58,12 +58,19 @@ post '/new' do
   end
 end
 
-post '/open' do
+get '/open_file' do
   return if !$db_client
 
   path = params[:path]
   content_type :json
   return $db_client.get_file_and_metadata("#{ROOT}/#{path}").to_json
+end
+
+get '/open_folder' do
+  return if !$db_client
+
+  path = params[:path]
+  return $db_client.metadata("#{ROOT}/#{path}", 25000, true, nil, nil, false).fetch("contents")
 end
 
 post '/save' do
