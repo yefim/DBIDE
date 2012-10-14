@@ -76,7 +76,8 @@ get '/open' do
 
   path = params[:path]
   file_or_folder = nil
-  if params[:is_dir]
+
+  if params[:is_dir] != "false"
     file_or_folder = open_folder(path)
   else
     file_or_folder = open_file(path)
