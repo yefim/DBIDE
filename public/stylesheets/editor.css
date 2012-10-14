@@ -32,14 +32,14 @@ div#filebrowser li:hover  {
   width: 90%;
 }
 .container .two.columns {
-  max-width: 10%;
-  min-width: 100px;
+  max-width: 15%;
+  min-width: 150px;
 }
 .container .fourteen.columns {
   min-width: 700px;
-  width: 90%;
+  width: 85%;
 }
 .container .columns {
   margin-left: 0;
-  margin-right: 4px;
+  margin-right: 6px;
 }

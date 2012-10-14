@@ -1,6 +1,6 @@
 <div>
   <div class='two columns'>
-    <h5>Folders</h5>
+    <h6>Folders</h6>
     <hr class='small' />
     <div id='filebrowser'>
       <ul>
@@ -27,6 +27,13 @@
   editor.getSession().setMode("ace/mode/javascript");
   editor.getSession().setTabSize(2);
   editor.getSession().setUseSoftTabs(true);
+  editor.commands.addCommand({
+    name: 'save',
+    bindKey: {win: 'Ctrl-S',  mac: 'Command-S'},
+    exec: function(editor) {
+      console.log('save');
+    }
+  });
   window.App = new DBIDE.Views.MainView({
     projects: <%= @projects.to_json %>,
     current_file: <%= @current_file.to_json %>
