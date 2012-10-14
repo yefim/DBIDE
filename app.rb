@@ -7,7 +7,7 @@ enable :sessions
 $db_client = nil
 
 def open_file(path)
-  $db_client.get_file_and_metadata(path)
+  $db_client.get_file(path)
 end
 
 def open_folder(path)
