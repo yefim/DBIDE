@@ -30,6 +30,8 @@ class DBIDE.Views.FileView extends Backbone.View
     @$el.html _.template @createTemplate, @model.toJSON()
     @
 
+  unrenderEdit: () -> @$el.remove()
+
   createFile: (e) ->
     if e.keyCode == 13
       path = "#{@model.collection.meta('path')}/#{$(e.currentTarget).val()}"
