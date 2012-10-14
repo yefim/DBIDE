@@ -13,7 +13,10 @@ class DBIDE.Views.FilesView extends DBIDE.Views.EditView
     views = []
     @collection.each (file) ->
       # if file.is_dir recurse!!
-      view = new DBIDE.Views.FileView(model: file)
+      if file.is_dir
+        view = new DBIDE.Views.FilesView(collection: null)
+      else
+        view = new DBIDE.Views.FileView(model: file)
       views.push view.render()
     viewEls = _.pluck _.values(views), 'el'
     # @.$(".contents").append viewEls
