@@ -176,6 +176,7 @@
 
 	.button:active,
 	button:active,
+	.button.selected,
 	input[type="submit"]:active,
 	input[type="reset"]:active,
 	input[type="button"]:active {

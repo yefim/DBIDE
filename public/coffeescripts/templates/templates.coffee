@@ -1,7 +1,7 @@
 DBIDE.Templates.Main = '''
   <h5>Projects <img class="new-folder pull-right" style="vertical-align:-1px;" src="/images/plus.png"></h5>
   <hr class='small' />
-  <div class='root'></div>
+  <ul class='root'></ul>
 '''
 
 DBIDE.Templates.File = '''
