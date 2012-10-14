@@ -6,18 +6,7 @@
   <div id='editor' class='fourteen columns'><%= @current_file[:content] %></div>
 </div>
 <script type='text/javascript'>
-  window.current_file = new DBIDE.Models.File(<%= @current_file.to_json %>);
+  $('#editor').css('height', window.innerHeight-78);
   window.App = new DBIDE.Views.MainView({ projects: <%= @projects.to_json %> });
+  window.current_file = new DBIDE.Models.File(<%= @current_file.to_json %>);
 </script>
-<hr class='small'>
-<div>
-  <button onclick='editor.setValue("YOU CHANGED IT");editor.gotoLine(1);'>Change</button>
-  <button onclick='alert(editor.getValue())'>Alert</button>
-  <button onclick='editor.setKeyboardHandler(require("ace/keyboard/vim").handler); $.ajax({
-    type: "POST",
-    url: "/mode",
-    data: {"mode": "vim"},});'>Vim</button>
-  <button onclick='editor.setTheme("ace/theme/monokai")'>Theme</button>
-  <div><%= @projects.to_json %></div>
-  <div><%= @current_file.to_json %></div>
-</div>

@@ -1,6 +1,7 @@
 .logo {
   margin-top: 20px;
   margin-bottom: 6px;
+  width: 400px;
 }
 
 #header {
@@ -10,10 +11,31 @@
 hr.small {
   margin: 2px 0 6px;
 }
-
 .button.full-width {
   line-height: 50px;
   margin-bottom: 8px;
+  font-size: 18px;
+  background: #eee -moz-linear-gradient(top, rgba(255,255,255,.2) 0%, rgba(0,0,0,.2) 100%); /* FF3.6+ */
+  background: #eee -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,.2)), color-stop(100%,rgba(0,0,0,.2))); /* Chrome,Safari4+ */
+  background: #eee -webkit-linear-gradient(top, rgba(255,255,255,.2) 0%,rgba(0,0,0,.2) 100%); /* Chrome10+,Safari5.1+ */
+  background: -webkit-gradient(linear, left top, left bottom, from(#33A0E8), to(#2180CE));
+  background: #eee -o-linear-gradient(top, rgba(255,255,255,.2) 0%,rgba(0,0,0,.2) 100%); /* Opera11.10+ */
+  background: #eee -ms-linear-gradient(top, rgba(255,255,255,.2) 0%,rgba(0,0,0,.2) 100%); /* IE10+ */
+  background: #eee linear-gradient(top, rgba(255,255,255,.2) 0%,rgba(0,0,0,.2) 100%); /* W3C */
+  border-top: 1px #2270AB solid;
+  border-right: 1px #18639A solid;
+  border-bottom: 1px #0F568B solid;
+  border-left: 1px #18639A solid;
+  text-shadow: #355782 0 1px 2px;
+  color: white;
+  -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3),inset 0px 1px 0px #83C5F1;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.3),inset 0px 1px 0px #83C5F1;
+  font-family: "Open Sans","lucida grande","Segoe UI",arial,verdana,"lucida sans unicode",tahoma,sans-serif;
+  font-weight: bold;
+}
+.button.logout {
+  float: right;
+  margin-top: 8px;
 }
 .pull-right {
   float: right;
