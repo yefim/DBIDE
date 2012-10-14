@@ -49,7 +49,7 @@ get '/' do
   end
 
   @css = ['base', 'skeleton', 'layout', 'style', 'editor']
-  @js = ['lib/jquery', 'lib/underscore', 'lib/backbone', 'lib/ace/ace', 'lib/ace/keybinding-vim', 'dbide', 'templates/templates', 'models/file', 'views/files_view', 'views/file_view', 'views/main_view' ]
+  @js = ['lib/jquery', 'lib/underscore', 'lib/backbone', 'lib/ace/ace', 'lib/ace/keybinding-vim', 'dbide', 'templates/templates', 'models/file', 'views/edit_view', 'views/files_view', 'views/file_view', 'views/main_view' ]
   erb :index
 end
 
