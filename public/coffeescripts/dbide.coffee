@@ -16,6 +16,7 @@ $ ->
   editor.getSession().setUseSoftTabs(true)
   editor.getSession().setTabSize(2)
   editor.getSession().setMode("ace/mode/coffee")
+  editor.focus()
 
   editor.commands.addCommand(
     name: 'save',

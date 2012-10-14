@@ -17,6 +17,7 @@ class DBIDE.Views.FileView extends Backbone.View
   setEditor: () =>
     window.editor.setValue @model.get("content")
     window.editor.gotoLine 1
+    window.editor.focus()
 
   saveFile: () ->
     console.log "clicked bitch"
