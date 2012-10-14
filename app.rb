@@ -98,3 +98,11 @@ post '/save' do
   file = params[:content]
   $db_client.put_file('#{ROOT}/#{path}', file, true)
 end
+
+post '/mode' do
+  mode = params["mode"]
+  uid = $db_client.account_info['uid']
+  @user = User.first(dropbox_id: uid)
+  @user.update(:editor => mode)
+end
+  

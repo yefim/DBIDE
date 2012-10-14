@@ -32,10 +32,14 @@
   });
 </script>
 <div>
-  <button onclick='editor.setValue("YOU CHANGED IT")'>Change</button>
-  <button onclick='alert(editor.getValue())'>Alert</button>
-  <button onclick='editor.setKeyboardHandler(require("ace/keyboard/vim").handler)'>Vim</button>
-  <button onclick='editor.setTheme("ace/theme/monokai")'>Theme</button>
+<button onclick='editor.setValue("YOU CHANGED IT")'>Change</button>
+<button onclick='alert(editor.getValue())'>Alert</button>
+<button onclick='editor.setKeyboardHandler(require("ace/keyboard/vim").handler); $.ajax({
+  type: "POST",
+  url: "/mode",
+  data: {"mode": "vim"},});
+  alert("hi");'>Vim</button>
+<button onclick='editor.setTheme("ace/theme/monokai")'>Theme</button>
 </div>
 <div><%= @projects.to_json %></div>
 <div><%= @current_file.to_json %></div>
