@@ -19,7 +19,15 @@
   </div>
 </div>
 <div id='editor' class='fourteen columns'>testing balls</div>
-<%= @projects.to_json %>
 <script type='text/javascript'>
+  var editor = ace.edit("editor");
+  editor.getSession().setMode("ace/mode/lua");
+  editor.getSession().setUseSoftTabs(true);
+  editor.getSession().setTabSize(2);
   window.App = new DBIDE.Views.MainView({projects: <%= @projects.to_json %>});
 </script>
+<button onclick='editor.setValue("YOU CHANGED IT")'>Change</button>
+<button onclick='alert(editor.getValue())'>Alert</button>
+<button onclick='editor.setKeyboardHandler(require("ace/keyboard/vim").handler)'>Vim</button>
+<button onclick='editor.setTheme("ace/theme/monokai")'>Theme</button>
+<%= @projects.to_json %>
