@@ -4,3 +4,5 @@ class DBIDE.Views.EditView extends Backbone.View
     @$el.html _.template @createTemplate, @model.toJSON() if !window.editExists
     window.editExists = true
     @
+
+  unrenderEdit: () -> @$el.remove()

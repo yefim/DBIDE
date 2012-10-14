@@ -36,3 +36,6 @@ class DBIDE.Views.FileView extends DBIDE.Views.EditView
       @model.set "path", path
       @model.upload()
       window.editExists = false
+      unrenderEdit()
+
+  unrenderEdit: () -> @$el.remove()
