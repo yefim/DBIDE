@@ -1,5 +1,6 @@
 require 'sinatra'
 require 'dropbox_sdk'
+require 'debugger'
 require_relative 'config'
 require_relative 'models'
 
@@ -97,10 +98,12 @@ end
 
 post '/save' do
   return if !$db_client
-
-  path = params[:path]
-  file = params[:content]
+  params = JSON.parse request.body.read
+  path = params["path"]
+  file = params["content"] || ""
   $db_client.put_file(path, file, true)
+  content_type :json
+  {path: path, content: file}.to_json
 end
 
 post '/mode' do
