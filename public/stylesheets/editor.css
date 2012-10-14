@@ -34,7 +34,7 @@ div#filebrowser li:hover  {
   position: relative;
   height: 90%;
   min-height: 400px;
-
+  width: 87%;
 }
 
 .container {
@@ -47,6 +47,7 @@ div#filebrowser li:hover  {
 .container .fourteen.columns {
   min-width: 700px;
   width: 85%;
+  margin-right: 0;
 }
 .container .columns {
   margin-left: 0;
