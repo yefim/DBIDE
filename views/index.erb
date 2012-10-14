@@ -19,27 +19,28 @@
       </ul>
     </div>
   </div>
-  <div id='editor' class='fourteen columns'>testing balls</div>
+  <div id='editor' class='fourteen columns'><%= @current_file["content"] %></div>
 </div>
-<<<<<<< HEAD
-=======
-<div id='editor' class='fourteen columns'><%= @current_file["content"] %></div>
->>>>>>> dfaf716ff583ea80628b865568e244a34cf1e7ec
 <script type='text/javascript'>
+  var editor = ace.edit("editor");
+  editor.setTheme("ace/theme/monokai");
+  editor.getSession().setMode("ace/mode/javascript");
+  editor.getSession().setTabSize(2);
+  editor.getSession().setUseSoftTabs(true);
   window.App = new DBIDE.Views.MainView({
     projects: <%= @projects.to_json %>,
     current_file: <%= @current_file.to_json %>
   });
 </script>
+<hr class='small'>
 <div>
-<button onclick='editor.setValue("YOU CHANGED IT")'>Change</button>
-<button onclick='alert(editor.getValue())'>Alert</button>
-<button onclick='editor.setKeyboardHandler(require("ace/keyboard/vim").handler); $.ajax({
-  type: "POST",
-  url: "/mode",
-  data: {"mode": "vim"},});
-  alert("hi");'>Vim</button>
-<button onclick='editor.setTheme("ace/theme/monokai")'>Theme</button>
+  <button onclick='editor.setValue("YOU CHANGED IT")'>Change</button>
+  <button onclick='alert(editor.getValue())'>Alert</button>
+  <button onclick='editor.setKeyboardHandler(require("ace/keyboard/vim").handler); $.ajax({
+    type: "POST",
+    url: "/mode",
+    data: {"mode": "vim"},});'>Vim</button>
+  <button onclick='editor.setTheme("ace/theme/monokai")'>Theme</button>
+  <div><%= @projects.to_json %></div>
+  <div><%= @current_file.to_json %></div>
 </div>
-<div><%= @projects.to_json %></div>
-<div><%= @current_file.to_json %></div>
