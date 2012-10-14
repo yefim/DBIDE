@@ -18,6 +18,7 @@ class DBIDE.Views.FileView extends DBIDE.Views.EditView
   setEditor: () =>
     console.log @model.get("content")
     window.editor.setValue @model.get("content")
+    window.editor.gotoLine 1
 
   saveFile: () ->
     console.log "clicked bitch"
