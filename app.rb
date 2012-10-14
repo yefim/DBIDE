@@ -38,11 +38,14 @@ get '/' do
   end
 
   @projects = open_folder(ROOT).map! {|x| x["path"] if x["is_dir"]}
-  @current_file = {}
-  @current_file = {
-    path: @user.current_file,
-    content: open_file(@user.current_file)
-  } unless @user.current_file.nil?
+  begin
+    @current_file = {
+      path: @user.current_file,
+      content: open_file(@user.current_file)
+    }
+  rescue DropboxError
+    @current_file = {}
+  end
 
   @js = ['lib/jquery', 'lib/underscore', 'lib/backbone', 'lib/ace/ace', 'dbide', 'models/file', 'views/files_view', 'views/file_view', 'views/main_view' ]
   erb :index
