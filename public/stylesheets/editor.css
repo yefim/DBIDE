@@ -23,6 +23,7 @@ div#filebrowser li.clicked {
 div#filebrowser li:hover  {
   cursor: pointer;
   color: #000000;
+  background-color: #eee;
 }
 
 #editor {
