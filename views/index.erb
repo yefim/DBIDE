@@ -22,29 +22,6 @@
   <div id='editor' class='fourteen columns'><%= @current_file["content"] %></div>
 </div>
 <script type='text/javascript'>
-  var editor = ace.edit("editor");
-  editor.setTheme("ace/theme/monokai");
-  editor.getSession().setMode("ace/mode/javascript");
-  editor.getSession().setTabSize(2);
-  editor.getSession().setUseSoftTabs(true);
-
-  editor.commands.addCommand({
-    name: 'save',
-    bindKey: {win: 'Ctrl-S',  mac: 'Command-S'},
-    exec: function(editor) {
-      console.log('save');
-    }
-  });
-  
-  editor.commands.addCommand({
-    name: 'unbind-cr',
-    bindKey: {win: 'Ctrl-R',  mac: 'Command-R'},
-    exec: function(editor) {}});
-  editor.commands.addCommand({
-    name: 'unbind-csr',
-    bindKey: {win: 'Ctrl-Shift-R',  mac: 'Command-Shift-R'},
-    exec: function(editor) {}});
-
   window.App = new DBIDE.Views.MainView({
     projects: <%= @projects.to_json %>,
     current_file: <%= @current_file.to_json %>
