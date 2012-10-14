@@ -9,4 +9,7 @@ root.DBIDE =
 String::display_name = () -> @match(/[^/]+$/)
 
 $ ->
-  editor = ace.edit("editor")
+  root.editor = ace.edit("editor")
+  editor.getSession().setUseSoftTabs(true)
+  editor.getSession().setTabSize(2)
+  editor.getSession().setMode("ace/mode/coffee")
