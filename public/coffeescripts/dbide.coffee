@@ -16,10 +16,23 @@ root.LANGUAGE_MAP =
   "rb"     : "ruby"
 
 $ ->
+  $(".editor-button").on "click", (e) ->
+    $(".editor-button").removeClass("selected")
+    $(e.target).addClass("selected")
+    mode = $(e.target).text().toLowerCase()
+    mode = "" if mode == "normal"
+    window.editor.setKeyboardHandler(require("ace/keyboard/#{mode}").handler)
+    $.ajax(
+      type: "POST",
+      url: "/mode",
+      data: {mode: mode}
+    )
+
   root.editor = ace.edit("editor")
   editor.setTheme("ace/theme/monokai")
   editor.getSession().setUseSoftTabs(true)
   editor.getSession().setTabSize(2)
+  # editor.setKeyboardHandler(require("ace/keyboard/#{MODE}").handler)
 
   if window.current_file.get("path")
     suffix = window.current_file.get("path").match(/[^\.]+$/)[0]
