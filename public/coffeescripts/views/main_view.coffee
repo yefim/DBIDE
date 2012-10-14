@@ -16,6 +16,9 @@ class DBIDE.Views.MainView extends Backbone.View
     # or it could just be it's own model, however, it will need to be fetched every time
     @current_file.on 'change', @render
     @render()
+
+  events:
+    "click .new-folder" : "newFolder"
   
   render: () ->
     console.log "rendering main"
@@ -29,3 +32,12 @@ class DBIDE.Views.MainView extends Backbone.View
     # Now render the current file
     # $("#editor").html @current_file.contents
     # set editor language to new language?
+
+  newFolder: () ->
+    view = new DBIDE.Views.FilesView()
+    @$el.find(".files").append view.renderEdit().el
+
+  renderEdit: () ->
+    @$el.html _.template @createTemplate, @model.toJSON() if !editExists
+    window.editExists = true
+    @
