@@ -1,12 +1,15 @@
-<% if !@user %>
-  <div class='twelve columns'>
-    <h1 class='logo' class='remove-bottom'>Dropbox IDE</h1>
-  </div>
-  <div class='four columns'>
-    <a href='<%= @authorize_url %>' class='full-width button'>Login with Dropbox</a>
-<% else %>
-  <div class='sixteen columns'>
-    <h1 class='logo' class='remove-bottom'>Dropbox IDE</h1>
-<% end %>
+<div id='header'>
+  <% if !@user %>
+    <div class='twelve columns'>
+      <h1 class='logo'>Dropbox IDE</h1>
+    </div>
+    <div class='four columns'>
+      <a href='<%= @authorize_url %>' class='full-width button'>Login with Dropbox</a>
+    </div>
+  <% else %>
+    <div class='sixteen columns'>
+      <h1 class='logo'>Dropbox IDE</h1>
+    </div>
+  <% end %>
 </div>
 <hr />
