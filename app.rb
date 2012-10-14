@@ -24,9 +24,9 @@ get '/' do
     @new_user = true
   end
 
-  @js = ['lib/jquery', 'lib/underscore', 'lib/backbone', 'lib/ace/ace', 'dbide', 'models/file', 'views/main_view']
-  @projects = $db_client.metadata("#{ROOT}/Project1", 25000, true, nil, nil, true)
+  @projects = $db_client.metadata("#{ROOT}", 25000, true, nil, nil, true).fetch("contents")
 
+  @js = ['lib/jquery', 'lib/underscore', 'lib/backbone', 'lib/ace/ace', 'dbide']
   erb :index
 end
 
@@ -68,4 +68,3 @@ post '/save' do
   file = params[:content]
   $db_client.put_file('#{ROOT}/#{path}', file, true)
 end
-
