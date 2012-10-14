@@ -20,7 +20,9 @@ class DBIDE.Views.FilesView extends Backbone.View
     @$el.find(".files").html viewEls
     @
 
-  expand: () -> @collection.open()
+  expand: () -> 
+    @collection.open()
+    window.editExists = false
 
   newFile: () ->
     file = new DBIDE.Models.File()

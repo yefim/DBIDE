@@ -8,6 +8,8 @@ root.DBIDE =
 
 String::display_name = () -> @match(/[^/]+$/)
 
+root.editExists = false
+
 $ ->
   root.editor = ace.edit("editor")
   editor.getSession().setUseSoftTabs(true)
