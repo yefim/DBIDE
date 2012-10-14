@@ -81,9 +81,13 @@ get '/open' do
   file_or_folder = nil
 
   if params[:is_dir] != "false"
+    # might have to use the map here?
     file_or_folder = open_folder(path)
   else
-    file_or_folder = open_file(path)
+    file_or_folder = {
+      path: path
+      content: open_file(path)
+    }
   end
   content_type :json
   file_or_folder.to_json
@@ -94,5 +98,5 @@ post '/save' do
 
   path = params[:path]
   file = params[:content]
-  $db_client.put_file('#{ROOT}/#{path}', file, true)
+  $db_client.put_file(path, file, true)
 end
