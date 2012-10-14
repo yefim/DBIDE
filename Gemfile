@@ -1,10 +1,7 @@
 source 'http://rubygems.org'
 
 gem 'sinatra'
-gem 'omniauth-dropbox'
+gem 'dropbox-sdk'
 gem 'data_mapper'
-gem 'sqlite3'
-gem 'pg'
-gem 'dm-sqlite-adapter'
+gem 'json'
 gem 'dm-postgres-adapter'
-gem 'sinatra-flash'
