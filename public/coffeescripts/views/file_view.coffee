@@ -25,6 +25,7 @@ class DBIDE.Views.FileView extends DBIDE.Views.EditView
   open: () ->
     # @current_file = @model
     # @current_file.open()
+    @render()
     @setEditor()
     @model.open()
 
