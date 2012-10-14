@@ -3,7 +3,7 @@ class DBIDE.Views.FileView extends Backbone.View
   createTemplate: DBIDE.Templates.CreateFile
 
   initialize: () ->
-    @model.on 'all', @setEditor
+    @model.on 'change', @setEditor
 
   events:
     "click .file"   : "open"
@@ -16,7 +16,8 @@ class DBIDE.Views.FileView extends Backbone.View
     @
 
   setEditor: () =>
-    editor.setValue @model.get("content")
+    console.log @model.get("content")
+    window.editor.setValue @model.get("content")
 
   saveFile: () ->
     console.log "clicked bitch"
@@ -24,13 +25,12 @@ class DBIDE.Views.FileView extends Backbone.View
   open: () ->
     # @current_file = @model
     # @current_file.open()
+    @setEditor()
     @model.open()
 
   renderEdit: () ->
     @$el.html _.template @createTemplate, @model.toJSON()
     @
-
-  unrenderEdit: () -> @$el.remove()
 
   createFile: (e) ->
     if e.keyCode == 13
