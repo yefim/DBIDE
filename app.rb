@@ -14,8 +14,8 @@ get '/' do
   rescue DropboxError
     redirect '/login'
   end
-
-  $db_client = DropboxClient.new(session['dropbox'], ACCESS_TYPE) if !$db_client
+  
+  $db_client ||= DropboxClient.new(session['dropbox'], ACCESS_TYPE)
   uid = $db_client.account_info['uid']
   @user = User.first(dropbox_id: uid)
   @new_user = false
@@ -31,12 +31,12 @@ get '/' do
 
   @projects = $db_client.metadata("#{ROOT}", 25000, true, nil, nil, false).fetch("contents")
 
-  @js = ['lib/jquery', 'lib/underscore', 'lib/backbone', 'lib/ace/ace', 'dbide']
+  @js = ['lib/jquery', 'lib/underscore', 'lib/backbone', 'lib/ace/ace', 'dbide', 'models/file', 'views/main_view', 'views/files_view', 'views/file_view']
   erb :index
 end
 
 get '/login' do
-  redirect '/' if session['dropbox'] && session['dropbox'].authorized?
+  redirect '/' if session['dropbox'] and session['dropbox'].authorized?
 
   db_session = DropboxSession.new(APP_KEY, APP_SECRET)
   session['dropbox'] = db_session

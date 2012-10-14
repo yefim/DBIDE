@@ -3,7 +3,8 @@ class DBIDE.Models.File extends Backbone.Model
     name: null
     project: null
     path: null
-    content: null
+    current: false
+    content: null # this could be a method
 
   upload: () ->
     @url = '/save'

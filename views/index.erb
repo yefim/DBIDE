@@ -19,3 +19,7 @@
   </div>
 </div>
 <div id='editor' class='fourteen columns'>testing balls</div>
+<%= @projects.to_json %>
+<script type='text/javascript'>
+  window.App = new DBIDE.Views.MainView({projects: <%= @projects.to_json %>});
+</script>
