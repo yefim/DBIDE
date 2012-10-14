@@ -45,3 +45,21 @@ div#filebrowser li:hover  {
   cursor: pointer;
   color: #000000;
 }
+
+
+
+.container {
+  width: 90%;
+}
+.container .two.columns {
+  max-width: 10%;
+  min-width: 100px;
+}
+.container .fourteen.columns {
+  min-width: 820px;
+  width: 90%;
+}
+.container .columns {
+  margin-left: 0;
+  margin-right: 0;
+}
