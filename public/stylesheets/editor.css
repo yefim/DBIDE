@@ -6,7 +6,7 @@ h5 img {
   cursor: pointer;
 }
 .selected {
-  background-color: #08C;
+  /*background-color: #08C;*/
 }
 .create input {
   padding: 0;
