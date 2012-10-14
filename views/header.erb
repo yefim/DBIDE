@@ -7,14 +7,21 @@
       <a href='<%= @authorize_url %>' class='full-width button'>Login with Dropbox</a>
     </div>
   <% else %>
-    <div class='one-third column'>
-      <h1 class='logo'>Dropbox IDE</h1>
+    <div class='two-thirds column'>
+      <h1 class='logo remove-bottom'>
+        Dropbox IDE
+        <small id='current-path'>
+        <%= @current_file[:path].split("DBIDE/")[1] %>
+        </small>
+      </h1>
+
     </div>
       <a href='/logout' class='logout command button'>Logout</a>
       <button class='editor-button command button <% if @editor.include? "vim" %>selected<% end %>'>Vim</button>
       <button class='editor-button command button <% if @editor.include? "emacs" %>selected<% end %>'>Emacs</button>
       <button class='editor-button command button <% if @editor == "" %>selected<% end %>'>Normal</button>
       <a href='http://dl.dropbox.com/u/<%= @user.dropbox_id %>/DBIDE/' class='viewsite command button' target='_blank'>View Site</a>
+
   <% end %>
 </div>
 <hr class='half-bottom' />

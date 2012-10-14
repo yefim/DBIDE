@@ -1,7 +1,13 @@
 .logo {
   margin-top: 20px;
   margin-bottom: 6px;
-  width: 400px;
+  /*width: 400px;*/
+}
+
+small {
+  margin-top: 20px;
+  font-size: 17px;
+  color: #666;
 }
 
 #header {
@@ -38,9 +44,6 @@ hr.small {
   float: right;
   margin-top: 8px;
   margin-right: 4px;
-}
-
-.button.editor-button {
   background: -webkit-gradient(linear, left top, left bottom, from(#33A0E8), to(#2180CE));
   text-shadow: #355782 0 0px 0px;
   color: white;
@@ -49,7 +52,18 @@ hr.small {
   border-bottom: 1px #0F568B solid;
   border-left: 1px #18639A solid;
 }
-.editor-button:hover, editor-button.selected {
+/*
+.button.editor-button {
+  background: -webkit-gradient(linear, left top, left bottom, from(#33A0E8), to(#2180CE));
+  text-shadow: #355782 0 0px 0px;
+  color: white;
+  border-top: 1px #2270AB solid;
+  border-right: 1px #18639A solid;
+  border-bottom: 1px #0F568B solid;
+  border-left: 1px #18639A solid;
+}*/
+
+.editor-button:hover, .editor-button.selected {
   color:black;
 }
 .pull-right {
