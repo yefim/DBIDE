@@ -87,7 +87,7 @@ get '/open' do
     file_or_folder = open_folder(path)
   else
     file_or_folder = {
-      path: path
+      path: path,
       content: open_file(path)
     }
   end
