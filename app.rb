@@ -97,7 +97,10 @@ get '/open' do
 
   if params[:is_dir] != "false"
     # might have to use the map here?
-    file_or_folder = open_folder(path)
+    file_or_folder = open_folder(path).map! do |folder|
+      {
+        path:
+    end
   else
     file_or_folder = {
       path: path,
@@ -114,6 +117,12 @@ post '/save' do
   path = params["path"]
   file = params["content"] || ""
   $db_client.put_file(path, file, true)
+
+  # current file == last saved file
+  uid = $db_client.account_info['uid']
+  @user = User.first(dropbox_id: uid)
+  @user.update(current_file: path) # should also set last saves here
+
   content_type :json
   {path: path, content: file}.to_json
 end
@@ -124,4 +133,3 @@ post '/mode' do
   @user = User.first(dropbox_id: uid)
   @user.update(:editor => mode)
 end
-  

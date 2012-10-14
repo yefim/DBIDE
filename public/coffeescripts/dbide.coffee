@@ -6,16 +6,25 @@ root.DBIDE =
   Views: {}
   Templates: {}
 
-String::display_name = () -> @match(/[^/]+$/)
+String::display_name = () -> @match(/[^/]+$/)[0]
 
 root.editExists = false
+
+root.LANGUAGE_MAP =
+  "js"     : "javascript"
+  "py"     : "python"
+  "rb"     : "ruby"
 
 $ ->
   root.editor = ace.edit("editor")
   editor.setTheme("ace/theme/monokai")
   editor.getSession().setUseSoftTabs(true)
   editor.getSession().setTabSize(2)
-  editor.getSession().setMode("ace/mode/coffee")
+
+  suffix = window.current_file.get("path").match(/[^\.]+$/)[0]
+  lang = LANGUAGE_MAP[suffix] || suffix
+  editor.getSession().setMode("ace/mode/#{lang}")
+
   editor.focus()
 
   editor.commands.addCommand(

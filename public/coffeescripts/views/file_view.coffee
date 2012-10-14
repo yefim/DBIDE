@@ -16,7 +16,10 @@ class DBIDE.Views.FileView extends Backbone.View
 
   setEditor: () =>
     window.editor.setValue @model.get("content")
-    window.editor.gotoLine 1
+    window.editor.gotoLine 1 # should not always do this :/
+    suffix = @model.get("path").match(/[^\.]+$/)[0]
+    lang = window.LANGUAGE_MAP[suffix] || suffix
+    window.editor.getSession().setMode("ace/mode/#{lang}")
     window.editor.focus()
 
   saveFile: () ->
@@ -32,6 +35,7 @@ class DBIDE.Views.FileView extends Backbone.View
   createFile: (e) ->
     if e.keyCode == 13
       path = "#{@model.collection.meta('path')}/#{$(e.currentTarget).val()}"
+      window.current_file = @model # bind current file to the new model
       @model.set "path", path
       @model.upload()
       window.editExists = false

@@ -12,6 +12,7 @@ class DBIDE.Views.FilesView extends DBIDE.Views.EditView
     @$el.html _.template @template, @collection._meta
     views = []
     @collection.each (file) ->
+      console.log file.toJSON()
       # if file.is_dir recurse!!
       view = new DBIDE.Views.FileView(model: file)
       views.push view.render()
