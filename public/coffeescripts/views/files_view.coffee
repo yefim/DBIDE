@@ -21,6 +21,7 @@ class DBIDE.Views.FilesView extends DBIDE.Views.EditView
     @
 
   expand: () ->
+    @collection.meta("expanded", true)
     @collection.open()
     window.editExists = false
 

@@ -8,6 +8,7 @@ class DBIDE.Views.MainView extends DBIDE.Views.EditView
       console.log project
       files_collection = new DBIDE.Collections.FilesCollection()
       files_collection.meta("is_dir", true)
+      files_collection.meta("expanded", false)
       files_collection.meta("path", project)
       # find the current file and set current_file = true for rendering
       @projects.push files_collection
