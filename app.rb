@@ -47,6 +47,7 @@ get '/' do
     @current_file = {}
   end
 
+  @css = ['base', 'skeleton', 'layout', 'style', 'editor']
   @js = ['lib/jquery', 'lib/underscore', 'lib/backbone', 'lib/ace/ace', 'lib/ace/keybinding-vim', 'dbide', 'templates/templates', 'models/file', 'views/files_view', 'views/file_view', 'views/main_view' ]
   erb :index
 end
@@ -59,6 +60,7 @@ get '/login' do
   db_session.get_request_token
   @authorize_url = db_session.get_authorize_url(SITE_URL)
 
+  @css = ['base', 'skeleton', 'layout', 'style']
   erb :login
 end
 
@@ -100,3 +102,11 @@ post '/save' do
   file = params[:content]
   $db_client.put_file(path, file, true)
 end
+
+post '/mode' do
+  mode = params["mode"]
+  uid = $db_client.account_info['uid']
+  @user = User.first(dropbox_id: uid)
+  @user.update(:editor => mode)
+end
+  
