@@ -28,4 +28,5 @@ class DBIDE.Views.FilesView extends DBIDE.Views.EditView
     file = new DBIDE.Models.File()
     @collection.add file
     view = new DBIDE.Views.FileView(model: file)
-    @$el.find(".root").append view.renderEdit().el
+    @$el.find(".files").append view.renderEdit().el
+    window.editExists = true
