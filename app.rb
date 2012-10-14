@@ -48,7 +48,7 @@ get '/' do
     @current_file = {}
   end
 
-  @js = ['lib/jquery', 'lib/underscore', 'lib/backbone', 'lib/ace/ace', 'dbide', 'models/file', 'views/files_view', 'views/file_view', 'views/main_view' ]
+  @js = ['lib/jquery', 'lib/underscore', 'lib/backbone', 'lib/ace/ace', 'dbide', 'templates/templates', 'models/file', 'views/files_view', 'views/file_view', 'views/main_view' ]
   erb :index
 end
 

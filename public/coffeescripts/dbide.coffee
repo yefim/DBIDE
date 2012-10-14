@@ -4,6 +4,7 @@ root.DBIDE =
   Models: {}
   Collections: {}
   Views: {}
+  Templates: {}
 
 String::display_name = () -> @match(/[^/]+$/)
 
