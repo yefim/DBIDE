@@ -1,7 +1,5 @@
 class DBIDE.Models.File extends Backbone.Model
   defaults:
-    name: null
-    project: null
     path: null
     current: false
     content: null # this could be a method
