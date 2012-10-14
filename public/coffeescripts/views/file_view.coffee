@@ -30,6 +30,7 @@ class DBIDE.Views.FileView extends Backbone.View
     window.current_file = @model
     @setEditor()
     @model.open()
+    $("#current-path").html(@model.get("path").split("/Public/DBIDE/")[1]);
     @render()
     # do I need to reset on success?
 
