@@ -25,6 +25,7 @@
   editor.getSession().setMode("ace/mode/javascript");
   editor.getSession().setTabSize(2);
   editor.getSession().setUseSoftTabs(true);
+
   editor.commands.addCommand({
     name: 'save',
     bindKey: {win: 'Ctrl-S',  mac: 'Command-S'},
@@ -32,6 +33,15 @@
       console.log('save');
     }
   });
+  editor.commands.addCommand({
+    name: 'unbind-cr',
+    bindKey: {win: 'Ctrl-R',  mac: 'Command-R'},
+    exec: function(editor) {}});
+  editor.commands.addCommand({
+    name: 'unbind-csr',
+    bindKey: {win: 'Ctrl-Shift-R',  mac: 'Command-Shift-R'},
+    exec: function(editor) {}});
+
   window.App = new DBIDE.Views.MainView({
     projects: <%= @projects.to_json %>,
     current_file: <%= @current_file.to_json %>
@@ -39,7 +49,7 @@
 </script>
 <hr class='small'>
 <div>
-  <button onclick='editor.setValue("YOU CHANGED IT")'>Change</button>
+  <button onclick='editor.setValue("YOU CHANGED IT");editor.gotoLine(1);'>Change</button>
   <button onclick='alert(editor.getValue())'>Alert</button>
   <button onclick='editor.setKeyboardHandler(require("ace/keyboard/vim").handler); $.ajax({
     type: "POST",
