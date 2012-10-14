@@ -9,12 +9,14 @@ class DBIDE.Views.MainView extends Backbone.View
       files_collection.meta("expanded", false)
       files_collection.meta("path", project)
       @projects.push files_collection
+    window.current_file.on 'selected', @render
     @render()
 
   events:
-    "click .new-folder" : "newFolder"
+    "click .new-folder pull-right" : "newFolder"
   
-  render: () ->
+  render: () =>
+    console.log "selected changed"
     $("#filebrowser").html _.template @template
     # Render the projects file browser first
     views = []

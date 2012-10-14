@@ -33,9 +33,15 @@ hr.small {
   font-family: "Open Sans","lucida grande","Segoe UI",arial,verdana,"lucida sans unicode",tahoma,sans-serif;
   font-weight: bold;
 }
+
 .button.logout {
   float: right;
   margin-top: 8px;
+}
+.button.command {
+  float: right;
+  margin-top: 8px;
+  margin-right: 4px;
 }
 .pull-right {
   float: right;

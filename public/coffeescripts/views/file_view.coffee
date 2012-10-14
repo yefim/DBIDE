@@ -30,6 +30,7 @@ class DBIDE.Views.FileView extends Backbone.View
     window.current_file = @model
     @setEditor()
     @model.open()
+    @render()
     # do I need to reset on success?
 
   createFile: (e) ->

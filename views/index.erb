@@ -8,6 +8,6 @@
 <script type='text/javascript'>
   $('#editor').css('height', window.innerHeight-78);
   MODE = "<%= @editor %>";
-  window.App = new DBIDE.Views.MainView({ projects: <%= @projects.to_json %> });
   window.current_file = new DBIDE.Models.File(<%= @current_file.to_json %>);
+  window.App = new DBIDE.Views.MainView({ projects: <%= @projects.to_json %> });
 </script>
