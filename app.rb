@@ -64,6 +64,19 @@ get '/login' do
   erb :login
 end
 
+get '/logout' do
+  begin
+    redirect '/login' if !session['dropbox']
+
+    session['dropbox'].get_access_token
+  rescue DropboxError
+    redirect '/login'
+  end
+
+  session.clear
+  redirect '/'
+end
+
 post '/new' do
   return if !$db_client
 

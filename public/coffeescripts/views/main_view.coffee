@@ -1,4 +1,4 @@
-class DBIDE.Views.MainView extends DBIDE.Views.EditView
+class DBIDE.Views.MainView extends Backbone.View
   template: DBIDE.Templates.Main # underscorejs template for the outer wrapper?
 
   initialize: (options) ->

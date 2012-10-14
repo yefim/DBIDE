@@ -1,4 +1,4 @@
-class DBIDE.Views.FileView extends DBIDE.Views.EditView
+class DBIDE.Views.FileView extends Backbone.View
   template: DBIDE.Templates.File # files only, no directories
   createTemplate: DBIDE.Templates.CreateFile
 
@@ -35,3 +35,8 @@ class DBIDE.Views.FileView extends DBIDE.Views.EditView
       @model.upload()
       window.editExists = false
       @render()
+
+  renderEdit: () ->
+    @$el.html _.template @createTemplate, @model.toJSON() if !editExists
+    window.editExists = true
+    @

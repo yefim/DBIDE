@@ -31,3 +31,10 @@ class DBIDE.Views.FilesView extends DBIDE.Views.EditView
     view = new DBIDE.Views.FileView(model: file)
     @$el.find(".files").append view.renderEdit().el
     window.editExists = true
+
+  renderEdit: () ->
+    @$el.html _.template @createTemplate, @model.toJSON() if !editExists
+    window.editExists = true
+    @
+
+  unrenderEdit: () -> @$el.remove()
