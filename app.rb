@@ -4,13 +4,12 @@ require_relative 'config'
 require_relative 'models'
 
 enable :sessions
-$db_client = nil
 
-def open_file(path)
+def open_file(path, db_client)
   db_client.get_file(path)
 end
 
-def open_folder(path)
+def open_folder(path, db_client)
   db_client.metadata(path, 25000, true, nil, nil, false).fetch("contents")
 end
 
@@ -25,7 +24,7 @@ get '/' do
   
   db_client ||= DropboxClient.new(session['dropbox'], ACCESS_TYPE)
   uid = db_client.account_info['uid']
-  @user = User.get_first(dropbox_id: uid)
+  @user = User.first(dropbox_id: uid)
   @new_user = false
 
   @projects = {}
@@ -37,11 +36,11 @@ get '/' do
     @new_user = true
   end
 
-  @projects = open_folder(ROOT).map! {|x| x["path"] if x["is_dir"]}
+  @projects = open_folder(ROOT, db_client).map! {|x| x["path"] if x["is_dir"]}
   begin
     @current_file = {
       path: @user.current_file,
-      content: open_file(@user.current_file)
+      content: open_file(@user.current_file, db_client)
     }
   rescue DropboxError
     @current_file = {}
@@ -84,10 +83,9 @@ get '/logout' do
 end
 
 post '/new' do
-  return if !db_client
-
   begin
     name = params[:name] || "Unnamed Project"
+    db_client ||= DropboxClient.new(session['dropbox'], ACCESS_TYPE)
     db_client.file_create_folder("#{ROOT}/#{name}")
     return true
   rescue DropboxError
@@ -96,18 +94,17 @@ post '/new' do
 end
 
 get '/open' do
-  return if !db_client
-
+  db_client ||= DropboxClient.new(session['dropbox'], ACCESS_TYPE)
   path = params[:path]
   file_or_folder = nil
 
   if params[:is_dir] != "false"
     # might have to use the map here? to extract, path and is_dir
-    file_or_folder = open_folder(path)
+    file_or_folder = open_folder(path, db_client)
   else
     file_or_folder = {
       path: path,
-      content: open_file(path)
+      content: open_file(path, db_client)
     }
   end
   content_type :json
@@ -115,7 +112,7 @@ get '/open' do
 end
 
 post '/save' do
-  return if !db_client
+  db_client ||= DropboxClient.new(session['dropbox'], ACCESS_TYPE)
   params = JSON.parse request.body.read
   path = params["path"]
   file = params["content"] || ""
@@ -131,6 +128,7 @@ post '/save' do
 end
 
 post '/mode' do
+  db_client ||= DropboxClient.new(session['dropbox'], ACCESS_TYPE)
   mode = params["mode"]
   uid = db_client.account_info['uid']
   @user = User.first(dropbox_id: uid)
