@@ -15,13 +15,16 @@ get '/' do
   @user = User.first(dropbox_id: uid)
   @new_user = false
 
+  @projects = {}
   if !@user
     @user = User.create(
       dropbox_id: uid, 
       access_token: session['dropbox'].access_token)
-    $db_client.put_file('/Public/DBIDE/Project1/index.html', 'Hello World')
+    $db_client.put_file("#{ROOT}/Project1/index.html", 'Hello World')
     @new_user = true
   end
+
+  @projects = $db_client.metadata("#{ROOT}/Project1", 25000, true, nil, nil, true)
 
   @js = ['lib/jquery', 'lib/underscore', 'lib/backbone', 'lib/ace/ace', 'dbide']
   erb :index
@@ -43,7 +46,7 @@ post '/new' do
 
   begin
     name = params[:name] || "Unnamed Project"
-    $db_client.file_create_folder('/Public/DBIDE/#{name}')
+    $db_client.file_create_folder("#{ROOT}/#{name}")
     return true
   rescue DropboxError
     return false
@@ -55,7 +58,7 @@ post '/open' do
 
   path = params[:path]
   content_type :json
-  return $db_client.get_file_and_metadata('/Public/DBIDE/#{path}').to_json
+  return $db_client.get_file_and_metadata("#{ROOT}/#{path}").to_json
 end
 
 post '/save' do
@@ -63,6 +66,6 @@ post '/save' do
 
   path = params[:path]
   file = params[:content]
-  $db_client.put_file('/Public/DBIDE/#{path}', file, true)
+  $db_client.put_file('#{ROOT}/#{path}', file, true)
 end
 
