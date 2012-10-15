@@ -2,7 +2,7 @@ require 'data_mapper'
 
 DataMapper::Logger.new($stdout, :debug)
 # ENV val for heroku
-DataMapper.setup(:default, ENV['DATABASE_URL'] || "sqlite3://#{Dir.pwd}/development.db")
+DataMapper.setup(:default, ENV['HEROKU_POSTGRESQL_PURPLE_URL'] || "sqlite3://#{Dir.pwd}/development.db")
 # Serial - autoincrement unique key
 
 class User
