@@ -6,7 +6,9 @@ root.DBIDE =
   Views: {}
   Templates: {}
 
-String::display_name = () -> @match(/[^/]+$/)[0]
+String::display_name = () ->
+  name = @match(/[^/]+$/)
+  name[0] if name else ""
 
 root.editExists = false
 
