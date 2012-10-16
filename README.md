@@ -7,7 +7,7 @@ Is live at [dbide.com](http://dbide.com). However, we do not yet have Dropbox pr
 
 ### TODO
 
-* Escape HTML when I get it from @current file.to
+* Escape HTML when I get it from @current_file.to_json
 
 * If we don't escape it, then grab first file from db upon load
 
