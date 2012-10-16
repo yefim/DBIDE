@@ -8,7 +8,9 @@ root.DBIDE =
 
 String::display_name = () ->
   name = @match(/[^/]+$/)
-  name[0] if name else ""
+  if name
+    return name[0]
+  else return ""
 
 root.editExists = false
 
